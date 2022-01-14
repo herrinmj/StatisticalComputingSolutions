@@ -1,8 +1,6 @@
 # StatisticalComputingSolutions
 
-'''
-
-
+```
 #Numeric Optimization
 
 knitr::opts_chunk$set(cache = T, fig.width = 4, fig.align = 'center')
@@ -106,4 +104,4 @@ get_regression_coefs <- function(data, ind){
 }
 get_regression_coefs(water_qual, 1:10)
 
-'''
+```
