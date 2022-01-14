@@ -18,9 +18,8 @@ for(i in 1:(J-1)){
 }
 emails[1,]
 ```
-### log-likelihood and maximum likelihood estimates for emailing system
+### Log-Likelihood & Maximum Likelihood Estimates for Emailing Service
 ```
-
 emails_ll <- function(par =c(x, y, p), X) {
   return(sum(log(par[3] * (par[2]^X) * exp(-1 * par[2]) / factorial(X) + (1-par[3]) *
            (par[1]^X) * exp(-1 * par[1]) / factorial(X)), na.rm = TRUE) /2)
@@ -33,7 +32,7 @@ opt <- optim(c(1, 3, 0.5), emails_ll, X = emails, control = list(fnscale = -1))
 
 ```
 
-### EM algorithm for maximum likelihood parameter estimates 
+### EM Algorithm for Maximum Liklihood Parameter Estimates 
 ```
 n_iter <- 1e3
 lambda_hat <- matrix(NA, n_iter, 3)
@@ -96,7 +95,7 @@ for (i in 1:B) {
 2*ten - quantile(q95, c(.975, .025))
 ```
 
-### linear-models for median chlorine levels by population, median_income, prop_children, L0_health
+### Linear-Model for Median Chlorine Levels by $population, $median_income, $prop_children, $L0_health
 ```
 fit <- lm(water_qual$median_cl2 ~ water_qual$population + water_qual$median_income + water_qual$prop_children + water_qual$LO_health, data = water_qual)
 summary(fit)
