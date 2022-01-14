@@ -1,10 +1,12 @@
 # StatisticalComputingSolutions
+
+* Sample Code from STAT 580 - Statistical Computing. 
 ### Numeric Optimization
 ```
 library(bootstrap)
 library(boot)
 library(GA)
-
+--initiate emails
 set.seed(2020)
 J<- 10
 p <- 0.3
@@ -18,6 +20,7 @@ for(i in 1:(J-1)){
 }
 emails[1,]
 ```
+Solutions:
 ### Log-Likelihood & Maximum Likelihood Estimates for Emailing Service
 ```
 emails_ll <- function(par =c(x, y, p), X) {
