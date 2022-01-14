@@ -1,5 +1,5 @@
 # StatisticalComputingSolutions
-
+### Numeric Optimization
 ```
 #Numeric Optimization
 
@@ -20,8 +20,10 @@ for(i in 1:(J-1)){
   }
 }
 emails[1,]
+```
+### log-likelihood and maximum likelihood estimates for emailing system
+```
 
-#log-liklihood
 emails_ll <- function(par =c(x, y, p), X) {
   return(sum(log(par[3] * (par[2]^X) * exp(-1 * par[2]) / factorial(X) + (1-par[3]) *
            (par[1]^X) * exp(-1 * par[1]) / factorial(X)), na.rm = TRUE) /2)
@@ -30,13 +32,12 @@ emails_ll <- function(par =c(x, y, p), X) {
 emails_ll(par = c(2, 3, 0.3), X = emails)
 emails_ll(par = c(1, 2, 0.5), X = emails)
 
-#maximum liklihood estimate for lambda0, lambda1, and p
-
 opt <- optim(c(1, 3, 0.5), emails_ll, X = emails, control = list(fnscale = -1))
 
+```
 
-#EM algorithm for maximum likelihood parameter estimates 
-
+### EM algorithm for maximum likelihood parameter estimates 
+```
 n_iter <- 1e3
 lambda_hat <- matrix(NA, n_iter, 3)
 lambda_hat[1, ] <- c(1, 2, 0.5)
@@ -52,8 +53,9 @@ for(iter in 2:n_iter){
   lambda_hat[iter, 3] <- sum(gamma_hat) / length(X_vec)
 }
 lambda_hat[1000,]
-
-'''
+```
+### Bootstrapping | Jackknife and Quantile Estimation
+```
 knitr::opts_chunk$set(cache = T, fig.width = 4, fig.align = 'center')
 library(bootstrap)
 library(boot)
@@ -93,7 +95,10 @@ for (i in 1:B) {
   q95[i] <- quantile(water_qual.b, 0.1)
 }
 2*ten - quantile(q95, c(.975, .025))
+```
 
+### linear-models for median chlorine levels by population, median_income, prop_children, L0_health
+```
 #linear-model for median chlorine levels given by population, median_income, prop_children, L0_health
 fit <- lm(water_qual$median_cl2 ~ water_qual$population + water_qual$median_income + water_qual$prop_children + water_qual$LO_health, data = water_qual)
 summary(fit)
@@ -103,5 +108,4 @@ get_regression_coefs <- function(data, ind){
   coef(fit)
 }
 get_regression_coefs(water_qual, 1:10)
-
 ```
