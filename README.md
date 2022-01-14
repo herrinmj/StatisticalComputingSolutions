@@ -1,9 +1,6 @@
 # StatisticalComputingSolutions
 ### Numeric Optimization
 ```
-#Numeric Optimization
-
-knitr::opts_chunk$set(cache = T, fig.width = 4, fig.align = 'center')
 library(bootstrap)
 library(boot)
 library(GA)
@@ -64,6 +61,7 @@ sample_corr <- cor(water_qual$median_cl2, water_qual$median_income)
 sample_corr
 
 #jackknife for bias estimation w/90th quantile for chlorine levels
+
 n <- nrow(water_qual)
 theta.hat <- cor(water_qual$median_cl2, water_qual$median_income)
 print(theta.hat)
@@ -77,6 +75,7 @@ print(bias)
 ninety <- quantile(water_qual$median_cl2, .90)
 
 #bootstrapped CI @ 95th percentile for teu 90th quantile: 1000 estimates
+
 set.seed(1234)
 B <- 1000
 q95 <- numeric(B)
@@ -99,7 +98,6 @@ for (i in 1:B) {
 
 ### linear-models for median chlorine levels by population, median_income, prop_children, L0_health
 ```
-#linear-model for median chlorine levels given by population, median_income, prop_children, L0_health
 fit <- lm(water_qual$median_cl2 ~ water_qual$population + water_qual$median_income + water_qual$prop_children + water_qual$LO_health, data = water_qual)
 summary(fit)
 
